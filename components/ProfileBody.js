@@ -20,7 +20,7 @@ export default class ProfileBody extends React.Component{
   render(){
     let block = <div></div>
     const ShowProfile = () =>{
-      this.setState({block: <ProfileInner login={this.props.login}/>});
+      this.setState({block: <ProfileInner login={this.props.login} res=""/>});
       return(
         <div></div>
       );

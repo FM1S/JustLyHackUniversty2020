@@ -14,17 +14,14 @@ export default class ProfileInner extends React.Component{
   }
 
   async componentDidMount(){
-    let currComp = this;
+    var self = this;
     let url = '192.168.0.5';
     await axios.get('http://'+ url +':8080/api/v1/users/userinfo/'+ this.props.login).then(function (response) {
         if(response.data.code == 200){
+          let len = response.data.us.length - 1;
           try{
-            currComp.setState({sex: response.data.sex});
-            currComp.setState({name: response.data.name});
-            currComp.setState({ndname: response.data.surname});
-            currComp.setState({date: response.data.dateborn});
-            currComp.setState({phone: response.data.phone});
-            currComp.setState({email: response.data.email});
+            self.setState({name: response.data.us[len].name,date: response.data.us[len].dateborn,ndname: response.data.us[len].surname,phone: response.data.us[len].phone,email: response.data.us[len].email,sex: response.data.us[len].sex})
+
         }catch(err){
           alert("Внутренняя ошибка!");}
         }else{
@@ -54,19 +51,19 @@ export default class ProfileInner extends React.Component{
                 <h5>{this.props.login}</h5>
               </Row>
               <Row className="border-bottom-1">
-                <h4>{this.state.date}</h4>
+                <h5>{this.state.date}</h5>
               </Row>
               <Row className="border-bottom-1">
-                <h4>{this.state.sex}</h4>
+                <h5>{this.state.sex}</h5>
               </Row>
               <Row className="border-bottom-1">
-                <h3>Контакты</h3>
+                <h4>Контакты:</h4>
               </Row>
               <Row className="border-bottom-1">
-                <h4>{this.state.phone}</h4>
+                <h5>{this.state.phone}</h5>
               </Row>
               <Row>
-                <h4>{this.state.email}</h4>
+                <h5>{this.state.email}</h5>
               </Row>
             </Col>
           </Row>

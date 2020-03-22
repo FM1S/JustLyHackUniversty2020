@@ -147,14 +147,7 @@ export default class AddApartament extends React.Component{
                   <Col lg={9}>
                     <Form>
                       <Form.Group>
-                        <Form.Control id="numRooms" as="select">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                          <option>6</option>
-                          <option>Студия</option>
+                        <Form.Control id="numRooms" type="number">
                         </Form.Control>
                       </Form.Group>
                     </Form>
