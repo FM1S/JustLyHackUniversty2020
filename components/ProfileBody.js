@@ -9,6 +9,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import ProfileInner from './ProfileInner';
 import PersanalData from './PersanalData';
 import AddApartament from './AddApartament';
+import MyAps from './MyAps';
 
 export default class ProfileBody extends React.Component{
   constructor(props){
@@ -41,14 +42,21 @@ export default class ProfileBody extends React.Component{
     }
 
     const ShowAparts = () =>{
-      this.setState({block: <ProfileInner/>});
+      this.setState({block: <MyAps login={this.props.login}/>});
       return(
         <div></div>
       );
     }
 
     const handlerAddAps = () =>{
-      this.setState({block: <AddApartament/>});
+      this.setState({block: <AddApartament login={this.props.login}/>});
+      return(
+        <div></div>
+      );
+    }
+
+    const handlerMyAps = () =>{
+      this.setState({block: <MyAps login={this.props.login}/>});
       return(
         <div></div>
       );
@@ -93,7 +101,7 @@ export default class ProfileBody extends React.Component{
                   </ListGroup.Item>
                   <Accordion.Collapse eventKey="2">
                     <div>
-                      <ListGroup.Item style={{'background-color':'#f2f2f2'}} className="mx-1">
+                      <ListGroup.Item style={{'background-color':'#f2f2f2'}} action onClick={(e) => handlerMyAps(e)} className="mx-1">
                         Мои квартиры
                       </ListGroup.Item>
                       <ListGroup.Item style={{'background-color':'#f2f2f2'}} action onClick={(e) => handlerAddAps(e)} className="mx-1">
