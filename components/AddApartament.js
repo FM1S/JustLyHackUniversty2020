@@ -13,6 +13,37 @@ export default class AddApartament extends React.Component{
   }
 
   render(){
+    const handler = (e) => {
+      let city = document.getElementById('city').value;
+      let metro = document.getElementById('metro').value;
+      let street = document.getElementById('street').value;
+      let houseNum = document.getElementById('houseNum').value;
+      let constructionNum = document.getElementById('constructionNum').value;
+      let houseType = document.getElementById('houseType').value;
+      let floor = document.getElementById('floor').value;
+      let numFloor = document.getElementById('numFloor').value;
+      let square = document.getElementById('square').value;
+      let numRooms = document.getElementById('numRooms').value;
+      let price = document.getElementById('price').value;
+      let description = document.getElementById('description').value;
+      let url = '192.168.0.5';
+      fetch('http://'+ url +':8080/api/v1/users/addaps/',
+          {headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method: "POST",
+          body: JSON.stringify({city: city, metro: metro, street: street, houseNum: houseNum, constructionNum: constructionNum, houseType: houseType, floor: floor, numFloor: numFloor, square: square, numRooms: numRooms, price: price, description: description, login: this.props.login})
+        }).then(res => res.json()).then((result) =>{
+        if(result.code == 200){
+          alert("Квартира добавлена!");
+        }else{
+          alert("Ошибка!");
+        }
+      },(error)=>{
+      });
+    }
+
     return(
       <div style={{'background-color':'rgba(255, 255, 255, .75)', height:'83vh'}} className="overflow-auto pb-10 scrollbar scrollbar-success">
         <Container >
@@ -182,7 +213,7 @@ export default class AddApartament extends React.Component{
                 <Row>
                   <Col lg={4}></Col>
                   <Col lg={4} className="text-center">
-                    <Button type="submit" className="btn-success w-100 my-2" action>Сохранить</Button>
+                    <Button type="submit" onClick={(e)=>handler(e)} className="btn-success w-100 my-2" action>Сохранить</Button>
                   </Col>
                   <Col lg={4}></Col>
                 </Row>
